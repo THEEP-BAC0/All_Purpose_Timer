@@ -7,13 +7,13 @@ class StyleManager:
     def apply_theme(self, theme: str, screen: QWidget) -> None:
         # Update window
         self.window.setProperty("theme", theme)
-        self.window.round_widget.setProperty("theme", theme)
+        self.window.roundWidget.setProperty("theme", theme)
         self.window.titleBar.set_theme(theme)
         self.window.style().unpolish(self.window)
         self.window.style().polish(self.window)
-        self.window.round_widget.style().unpolish(self.window.round_widget)
-        self.window.round_widget.style().polish(self.window.round_widget)
-        self.window.round_widget.update()
+        self.window.roundWidget.style().unpolish(self.window.roundWidget)
+        self.window.roundWidget.style().polish(self.window.roundWidget)
+        self.window.roundWidget.update()
 
         # Update screen children
         for child in screen.findChildren(QWidget):

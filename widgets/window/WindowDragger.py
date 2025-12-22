@@ -1,6 +1,6 @@
 from PySide6.QtCore import Qt, QPoint
 
-class QDragger:
+class WindowDragger:
     def __init__(self, window, titleBar):
         self.init_vars(window, titleBar)
 

@@ -1,54 +1,69 @@
+# PySide6 Widgets
 from PySide6.QtWidgets import QMainWindow, QVBoxLayout, QWidget
-from PySide6.QtCore import Qt, QFile
-import resources_rc
-from widgets.titlebar_widgets.QTitleBar import QTitleBar
-from widgets.stopwatch_widgets.QStopwatchScreen import QStopwatchScreen
-from .StyleManager import StyleManager
+from PySide6.QtCore import Qt
+
+# Created Widgets
+from widgets.title_bar.QTitleBar import QTitleBar
+from widgets.switch_bar.QSwitchBar import QSwitchBar
 from .ScreenManager import ScreenManager
+from .StyleManager import StyleManager
+
+# Screens
+from widgets.stopwatch_widgets.QStopwatchScreen import QStopwatchScreen
 
 class QWindow(QMainWindow):
     def __init__(self):
         super().__init__()
         self.init_meta()
-        self.init_vars()
+        self.init_managers()
         self.init_ui()
     
     def init_meta(self) -> None:
-        self.setWindowTitle("Pomodoro Stopwatch")
-        self.setProperty("theme", "pink")
-        self.width: int = 300
-        self.height: int = 200
+        self.setWindowTitle("All Purpose Timer")
+        self.setProperty("theme", "main")
+        
+        self.width: int = 250
+        self.height: int = 375
         self.setFixedSize(self.width, self.height)
+        
         self.setWindowFlags(Qt.FramelessWindowHint)
         self.setAttribute(Qt.WA_TranslucentBackground)
-        file = QFile(":/style.qss")
-        file.open(QFile.ReadOnly)
-        self.setStyleSheet(file.readAll().data().decode())
+        
+        with open ("style.qss") as f: self.setStyleSheet(f.read())
 
-    def init_vars(self) -> None:
-        self.style_manager = StyleManager(self)
+    def init_managers(self) -> None:
         self.screen_manager = ScreenManager(self)
-
+        self.style_manager = StyleManager(self)
+   
     def init_ui(self) -> None:
-        # Create main widget
-        main_widget = QWidget()
+        # Create main round container
+        self.roundWidget = QWidget(self)
+        self.roundWidget.setObjectName("RoundWidget")
+        self.roundWidget.setProperty("theme", "main")
+        self.roundWidget.resize(self.width, self.height)
 
-        # Create wrapper
-        self.wrapper = QVBoxLayout()
-        self.wrapper.setContentsMargins(0, 0, 0, 0)
-        main_widget.setLayout(self.wrapper)
+        # Layout inside the round widget
+        self.roundLayout = QVBoxLayout()
+        self.roundLayout.setContentsMargins(0, 0, 0, 0)
+        self.roundLayout.setSpacing(0)
+        self.roundWidget.setLayout(self.roundLayout)
 
-        # Create round widget
-        self.round_widget = QWidget(self)
-        self.round_widget.setObjectName("RoundWidget")
-        self.round_widget.setProperty("theme", "pink")
-        self.round_widget.resize(300, 200)
+        # Create title bar inside the round widget
+        self.titleBar = QTitleBar("All Purpose Timer", self)
+        self.roundLayout.addWidget(self.titleBar)
 
-        # Create title bar
-        self.titleBar = QTitleBar(self)
-        
-        self.wrapper.addWidget(self.titleBar)
-        self.screen_manager.current_screen = QStopwatchScreen(self)
-        self.wrapper.addWidget(self.screen_manager.current_screen)
-        
-        self.setCentralWidget(main_widget)
+        # Create switch bar inside the round widget
+        self.switchBar = QSwitchBar(self)
+        self.roundLayout.addWidget(self.switchBar)
+
+        # Create content area
+        self.contentWidget = QWidget(self.roundWidget)
+        self.roundLayout.addWidget(self.contentWidget)
+
+        # Create content layout
+        self.contentLayout = QVBoxLayout()
+        self.contentWidget.setLayout(self.contentLayout)
+
+        # Set roundWidget as the central widget
+        self.setCentralWidget(self.roundWidget)
+        self.screen_manager.switch_to(QStopwatchScreen)

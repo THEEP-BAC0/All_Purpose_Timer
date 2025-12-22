@@ -1,0 +1,157 @@
+/* ==================================================
+   GLOBAL BASE STYLES
+   ================================================== */
+
+QWidget {
+    font-family: "Courier New";
+    font-weight: bold;
+}
+
+
+/* ==================================================
+   ROOT WINDOW / CONTAINERS
+   ================================================== */
+
+QWidget#RoundWidget {
+    border-radius: 10px;
+}
+
+QWidget#StopwatchScreen {
+    border-radius: 10px;
+    padding: 10px;
+}
+
+
+/* ==================================================
+   TITLE BAR
+   ================================================== */
+
+QFrame#TitleBar,
+QLabel#Title {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+QLabel#Title {
+    font-weight: bold;
+}
+
+
+/* ---------- Title Bar Buttons ---------- */
+
+QPushButton#ExitButton,
+QPushButton#MinimizeButton {
+    border: 2px solid black;
+    border-radius: 4px;
+    padding: 0;
+    font-weight: bold;
+}
+
+
+/* ==================================================
+   STOPWATCH COMPONENTS
+   ================================================== */
+
+QLabel#StopwatchLabel {
+    font-size: 36px;
+    padding: 12px;
+}
+
+QLabel#StateLabel {
+    font-size: 28px;
+    padding: 8px;
+}
+
+QPushButton#StopwatchButton,
+QPushButton#CountdownButton,
+QPushButton#SwitchButton {
+    font-size: 16px;
+}
+
+QPushButton#SettingsButton {
+    padding: 0;
+}
+
+
+/* ==================================================
+   THEME: STOPWATCH
+   ================================================== */
+
+/* ---------- Global Theme ---------- */
+
+QWidget[theme="stopwatch"] {
+    background-color: rgb(241, 104, 125);
+    color: white;
+}
+
+QLabel[theme="stopwatch"] {
+    color: white;
+}
+
+
+/* ---------- Title Bar Theme ---------- */
+
+QFrame#TitleBar[theme="stopwatch"],
+QLabel#Title[theme="stopwatch"] {
+    background-color: rgb(120, 30, 55);
+}
+
+QLabel#Title[theme="stopwatch"] {
+    color: white;
+}
+
+
+/* ---------- Window Theme ---------- */
+
+QWidget#RoundWidget[theme="stopwatch"] {
+    background-color: rgb(241, 104, 125);
+}
+
+
+/* ---------- Inputs ---------- */
+
+QLineEdit[theme="stopwatch"],
+QTimeEdit[theme="stopwatch"],
+QComboBox[theme="stopwatch"] {
+    background-color: rgb(230, 150, 160);
+    border: 2px solid rgb(200, 80, 100);
+    border-radius: 6px;
+    padding: 4px 8px;
+    color: white;
+}
+
+
+/* ---------- Buttons ---------- */
+
+QPushButton[theme="stopwatch"] {
+    background-color: rgb(220, 70, 100);
+    border: 2px solid rgb(180, 50, 80);
+    border-bottom: 4px solid rgb(150, 40, 70);
+    border-radius: 8px;
+    padding: 6px 12px;
+}
+
+QPushButton[theme="stopwatch"]:hover {
+    background-color: rgb(235, 85, 115);
+}
+
+QPushButton[theme="stopwatch"]:pressed {
+    border-bottom: 2px solid rgb(120, 30, 55);
+    padding-top: 8px;
+    padding-bottom: 4px;
+}
+
+
+/* ---------- Title Bar Buttons (Theme Override) ---------- */
+
+QPushButton#ExitButton[theme="stopwatch"],
+QPushButton#MinimizeButton[theme="stopwatch"] {
+    border: 2px solid rgb(180, 50, 80);
+    color: white;
+}
+
+
+/* ==================================================
+   THEME OVERRIDES (OTHER THEMES)
+   ================================================== */
+
