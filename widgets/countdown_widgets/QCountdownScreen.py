@@ -11,7 +11,7 @@ class QCountdownScreen(QWidget):
     
     # Initialize all needed variables
     def init_vars(self) -> None:
-        self.stopwatch = QCountdownTimer()
+        self.countdown = QCountdownTimer()
 
     # Initializes the user interface
     def init_ui(self) -> None:
@@ -22,33 +22,31 @@ class QCountdownScreen(QWidget):
         self.layout.setContentsMargins(0, 0, 0, 0)
 
         # Create widget components
-        self.stopwatchLabel: QLabel = QLabel("00:00:00")
-        self.stopwatchButton: QPushButton = QPushButton("Start")
+        self.countdownLabel: QLabel = QLabel(text="00:00:00", objectName="CountdownLabel")
+        self.countdownButton: QPushButton = QPushButton(text="Start", objectName="CountdownButton")
         
         # Modify widgets before adding
-        self.stopwatchLabel.setObjectName("StopwatchLabel")
-        self.stopwatchButton.setObjectName("StopwatchButton")
         
         # Add widgets to layout
-        self.layout.addWidget(self.stopwatchLabel)
-        self.layout.addWidget(self.stopwatchButton)
+        self.layout.addWidget(self.countdownLabel)
+        self.layout.addWidget(self.countdownButton)
 
         # Connect signals
-        self.stopwatchButton.clicked.connect(self.toggle_stopwatch)
-        self.stopwatch.time_changed.connect(self.update_label)
+        self.countdownButton.clicked.connect(self.toggle_countdown)
+        self.countdown.time_changed.connect(self.update_label)
 
         self.set_theme()
 
     # Toggles the countdown
     def toggle_countdown(self) -> None:
-        self.stopwatch.toggle()
-        self.stopwatchButton.setText("Stop" if self.stopwatch.running else "Start")
+        self.countdown.toggle()
+        self.countdownButton.setText("Stop" if self.countdown.running else "Start")
 
-    # Updates stopwatch label
+    # Updates countdown label
     def update_label(self, text) -> None:
-        self.stopwatchLabel.setText(text)
+        self.countdownLabel.setText(text)
     
     def set_theme(self):
-        theme = "stopwatch"
+        theme = "countdown"
         self.setProperty("theme", theme)
         self.window.style_manager.apply_theme(theme, self)

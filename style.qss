@@ -7,7 +7,6 @@ QWidget {
     font-weight: bold;
 }
 
-
 /* ==================================================
    ROOT WINDOW / CONTAINERS
    ================================================== */
@@ -36,6 +35,18 @@ QLabel#Title {
     font-weight: bold;
 }
 
+/* ==================================================
+   SWITCH BAR
+   ================================================== */
+
+QPushButton#StopwatchSwitchButton,
+QPushButton#CountdownSwitchButton {
+    color: white;
+    border: 2px solid black;
+    border-radius: 4px;
+    padding: 2px;
+    font-weight: bold;
+}
 
 /* ---------- Title Bar Buttons ---------- */
 
@@ -63,8 +74,7 @@ QLabel#StateLabel {
 }
 
 QPushButton#StopwatchButton,
-QPushButton#CountdownButton,
-QPushButton#SwitchButton {
+QPushButton#CountdownButton {
     font-size: 16px;
 }
 
@@ -99,7 +109,6 @@ QLabel#Title[theme="stopwatch"] {
 QLabel#Title[theme="stopwatch"] {
     color: white;
 }
-
 
 /* ---------- Window Theme ---------- */
 

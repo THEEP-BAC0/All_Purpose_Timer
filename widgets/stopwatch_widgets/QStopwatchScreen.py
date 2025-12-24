@@ -22,12 +22,8 @@ class QStopwatchScreen(QWidget):
         self.layout.setContentsMargins(0, 0, 0, 0)
 
         # Create widget components
-        self.stopwatchLabel: QLabel = QLabel("00:00:00")
-        self.stopwatchButton: QPushButton = QPushButton("Start")
-        
-        # Modify widgets before adding
-        self.stopwatchLabel.setObjectName("StopwatchLabel")
-        self.stopwatchButton.setObjectName("StopwatchButton")
+        self.stopwatchLabel: QLabel = QLabel(text="00:00:00", objectName="StopwatchLabel")
+        self.stopwatchButton: QPushButton = QPushButton(text="Start", objectName="StopwatchButton")
         
         # Add widgets to layout
         self.layout.addWidget(self.stopwatchLabel)

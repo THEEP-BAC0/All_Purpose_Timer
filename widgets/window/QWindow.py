@@ -8,7 +8,6 @@ from widgets.switch_bar.QSwitchBar import QSwitchBar
 from .ScreenManager import ScreenManager
 from .StyleManager import StyleManager
 
-# Screens
 from widgets.stopwatch_widgets.QStopwatchScreen import QStopwatchScreen
 
 class QWindow(QMainWindow):

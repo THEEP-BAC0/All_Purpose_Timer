@@ -39,9 +39,8 @@ class QTitleBar(QFrame):
         layout.addLayout(title_layout)
 
         # Title label
-        self.titleLabel = QLabel("Window Maker")
+        self.titleLabel = QLabel("All Purpose Timer", objectName="Title")
         if self.title: self.titleLabel.setText(self.title)
-        self.titleLabel.setObjectName("Title")
         self.titleLabel.setProperty("theme", "main")
         title_layout.addWidget(self.titleLabel)
 
