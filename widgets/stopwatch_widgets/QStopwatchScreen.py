@@ -24,14 +24,17 @@ class QStopwatchScreen(QWidget):
         # Create widget components
         self.stopwatchLabel: QLabel = QLabel(text="00:00:00", objectName="StopwatchLabel")
         self.stopwatchButton: QPushButton = QPushButton(text="Start", objectName="StopwatchButton")
+        self.restartButton: QPushButton = QPushButton(text="Restart", objectName="RestartButton")
         
         # Add widgets to layout
         self.layout.addWidget(self.stopwatchLabel)
         self.layout.addWidget(self.stopwatchButton)
+        self.layout.addWidget(self.restartButton)
 
         # Connect signals
         self.stopwatchButton.clicked.connect(self.toggle_stopwatch)
         self.stopwatch.time_changed.connect(self.update_label)
+        self.restartButton.clicked.connect(lambda : self.stopwatch.reset_time())
 
         self.set_theme()
 

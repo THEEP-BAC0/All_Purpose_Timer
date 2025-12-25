@@ -7,6 +7,19 @@ QWidget {
     font-weight: bold;
 }
 
+/* ---------- Global Components ---------- */
+
+QLabel#StopwatchLabel {
+    font-size: 36px;
+    padding: 12px;
+}
+
+QPushButton#StopwatchButton,
+QPushButton#RestartButton,
+QPushButton#CountdownButton {
+    font-size: 16px;
+}
+
 /* ==================================================
    ROOT WINDOW / CONTAINERS
    ================================================== */
@@ -19,7 +32,6 @@ QWidget#StopwatchScreen {
     border-radius: 10px;
     padding: 10px;
 }
-
 
 /* ==================================================
    TITLE BAR
@@ -58,31 +70,6 @@ QPushButton#MinimizeButton {
     font-weight: bold;
 }
 
-
-/* ==================================================
-   STOPWATCH COMPONENTS
-   ================================================== */
-
-QLabel#StopwatchLabel {
-    font-size: 36px;
-    padding: 12px;
-}
-
-QLabel#StateLabel {
-    font-size: 28px;
-    padding: 8px;
-}
-
-QPushButton#StopwatchButton,
-QPushButton#CountdownButton {
-    font-size: 16px;
-}
-
-QPushButton#SettingsButton {
-    padding: 0;
-}
-
-
 /* ==================================================
    THEME: STOPWATCH
    ================================================== */
@@ -98,6 +85,11 @@ QLabel[theme="stopwatch"] {
     color: white;
 }
 
+/* ---------- Window Theme ---------- */
+
+QWidget#RoundWidget[theme="stopwatch"] {
+    background-color: rgb(241, 104, 125);
+}
 
 /* ---------- Title Bar Theme ---------- */
 
@@ -106,28 +98,20 @@ QLabel#Title[theme="stopwatch"] {
     background-color: rgb(120, 30, 55);
 }
 
+/* ---------- Title Bar Buttons (Theme Override) ---------- */
+
+QPushButton#ExitButton[theme="stopwatch"],
+QPushButton#MinimizeButton[theme="stopwatch"] {
+    border: 2px solid rgb(180, 50, 80);
+    color: white;
+}
+
 QLabel#Title[theme="stopwatch"] {
     color: white;
 }
 
-/* ---------- Window Theme ---------- */
+/* ---------- Switch Bar ---------- */
 
-QWidget#RoundWidget[theme="stopwatch"] {
-    background-color: rgb(241, 104, 125);
-}
-
-
-/* ---------- Inputs ---------- */
-
-QLineEdit[theme="stopwatch"],
-QTimeEdit[theme="stopwatch"],
-QComboBox[theme="stopwatch"] {
-    background-color: rgb(230, 150, 160);
-    border: 2px solid rgb(200, 80, 100);
-    border-radius: 6px;
-    padding: 4px 8px;
-    color: white;
-}
 
 
 /* ---------- Buttons ---------- */
@@ -150,17 +134,85 @@ QPushButton[theme="stopwatch"]:pressed {
     padding-bottom: 4px;
 }
 
+/* ==================================================
+   THEME: COUNTDOWN
+   ================================================== */
 
-/* ---------- Title Bar Buttons (Theme Override) ---------- */
+/* ---------- Global Theme ---------- */
 
-QPushButton#ExitButton[theme="stopwatch"],
-QPushButton#MinimizeButton[theme="stopwatch"] {
-    border: 2px solid rgb(180, 50, 80);
+QWidget[theme="countdown"] {
+    background-color: rgba(104, 207, 241, 1);
+    color: black;
+}
+
+QLabel[theme="countdown"] {
+    color: black;
+}
+
+/* ---------- Window Theme ---------- */
+
+QWidget#RoundWidget[theme="countdown"] {
+    background-color: rgba(104, 214, 241, 1);
+}
+
+/* ---------- Title Bar Theme ---------- */
+
+QFrame#TitleBar[theme="countdown"],
+QLabel#Title[theme="countdown"] {
+    background-color: rgba(44, 156, 168, 1);
+}
+
+QLabel#Title[theme="countdowwn"] {
     color: white;
 }
 
+/* ---------- Title Bar Buttons (Theme Override) ---------- */
 
-/* ==================================================
-   THEME OVERRIDES (OTHER THEMES)
-   ================================================== */
+QPushButton#ExitButton[theme="countdown"],
+QPushButton#MinimizeButton[theme="countdown"] {
+    border: 2px solid rgba(50, 154, 180, 1);
+    color: white;
+}
 
+/* ---------- Switch Bar ---------- */
+
+
+
+/* ---------- Components ---------- */
+
+QPushButton#CountdownButton {
+    background-color: rgba(150, 230, 230, 1);
+    border: 2px solid rgba(80, 160, 200, 1);
+    border-radius: 6px;
+    padding: 4px 8px;
+    color: black;
+}
+
+QTimeEdit#TimeRange {
+    background-color: rgba(111, 198, 214, 1);
+    color: black;
+    font-size: 36px;
+    font-weight: bold;
+    border-radius: 6px;
+    padding: 2px 6px;
+}
+
+/* ---------- Buttons ---------- */
+
+QPushButton[theme="countdown"] {
+    background-color: rgba(70, 218, 220, 1);
+    border: 2px solid rgba(50, 111, 180, 1);
+    border-bottom: 4px solid rgba(40, 111, 150, 1);
+    border-radius: 8px;
+    padding: 6px 12px;
+}
+
+QPushButton[theme="countdown"]:hover {
+    background-color: rgba(85, 185, 235, 1);
+}
+
+QPushButton[theme="countdown"]:pressed {
+    border-bottom: 2px solid rgba(30, 72, 120, 1);
+    padding-top: 8px;
+    padding-bottom: 4px;
+}

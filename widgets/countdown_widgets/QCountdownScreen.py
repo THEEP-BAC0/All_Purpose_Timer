@@ -1,6 +1,8 @@
-from PySide6.QtWidgets import QWidget, QVBoxLayout, QLabel, QPushButton
-from PySide6.QtCore import Qt
+from PySide6.QtWidgets import QWidget, QVBoxLayout, QPushButton
+from PySide6.QtCore import Qt, QTime
 from .QCountdownTimer import QCountdownTimer
+
+from widgets.countdown_widgets.QTimeRange import QTimeRange
 
 class QCountdownScreen(QWidget):
     def __init__(self, window):
@@ -22,13 +24,11 @@ class QCountdownScreen(QWidget):
         self.layout.setContentsMargins(0, 0, 0, 0)
 
         # Create widget components
-        self.countdownLabel: QLabel = QLabel(text="00:00:00", objectName="CountdownLabel")
+        self.countdownRange: QTimeRange = QTimeRange()
         self.countdownButton: QPushButton = QPushButton(text="Start", objectName="CountdownButton")
         
-        # Modify widgets before adding
-        
         # Add widgets to layout
-        self.layout.addWidget(self.countdownLabel)
+        self.layout.addWidget(self.countdownRange)
         self.layout.addWidget(self.countdownButton)
 
         # Connect signals
@@ -39,12 +39,12 @@ class QCountdownScreen(QWidget):
 
     # Toggles the countdown
     def toggle_countdown(self) -> None:
-        self.countdown.toggle()
-        self.countdownButton.setText("Stop" if self.countdown.running else "Start")
+        self.countdown.toggle(self.countdownRange.time())
+        self.countdownButton.setText("Pause" if self.countdown.running else "Start")
 
     # Updates countdown label
-    def update_label(self, text) -> None:
-        self.countdownLabel.setText(text)
+    def update_label(self, time: QTime) -> None:
+        self.countdownRange.setTime(time)
     
     def set_theme(self):
         theme = "countdown"
