@@ -9,6 +9,7 @@ class StyleManager:
         self.window.setProperty("theme", theme)
         self.window.roundWidget.setProperty("theme", theme)
         self.window.titleBar.set_theme(theme)
+        self.window.switchBar.set_theme(theme)
         self.window.style().unpolish(self.window)
         self.window.style().polish(self.window)
         self.window.roundWidget.style().unpolish(self.window.roundWidget)

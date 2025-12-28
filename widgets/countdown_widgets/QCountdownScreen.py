@@ -1,6 +1,6 @@
 from PySide6.QtWidgets import QWidget, QVBoxLayout, QPushButton
 from PySide6.QtCore import Qt, QTime
-from .QCountdownTimer import QCountdownTimer
+from ..timers.QCountdownTimer import QCountdownTimer
 
 from widgets.countdown_widgets.QTimeRange import QTimeRange
 

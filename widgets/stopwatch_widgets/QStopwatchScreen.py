@@ -1,6 +1,6 @@
 from PySide6.QtWidgets import QWidget, QVBoxLayout, QLabel, QPushButton
 from PySide6.QtCore import Qt
-from .QStopwatch import QStopwatch
+from ..timers.QStopwatch import QStopwatch
 
 class QStopwatchScreen(QWidget):
     def __init__(self, window):
