@@ -217,3 +217,98 @@ QTimeEdit#TimeRange {
    ================================================== */
 
 /* ---------- Global Theme ---------- */
+
+QWidget[theme="alarm"] {
+    background-color: rgba(170, 241, 104, 1);
+    color: black;
+}
+
+QLabel[theme="alarm"],
+QPushButton[theme="alarm"] {
+    color: black;
+}
+
+/* ---------- Buttons ---------- */
+
+QPushButton[theme="alarm"] {
+    background-color: rgba(113, 220, 70, 1);
+    border: 2px solid rgba(50, 180, 65, 1);
+    border-bottom: 4px solid rgba(77, 150, 40, 1);
+    border-radius: 8px;
+    padding: 6px 12px;
+}
+
+QPushButton[theme="alarm"]:hover {
+    background-color: rgba(113, 235, 85, 1);
+}
+
+QPushButton[theme="alarm"]:pressed {
+    border-bottom: 2px solid rgba(30, 120, 44, 1);
+    padding-top: 8px;
+    padding-bottom: 4px;
+}
+
+/* ---------- Window Theme ---------- */
+
+QWidget#RoundWidget[theme="alarm"] {
+    background-color: rgba(119, 219, 94, 1);
+}
+
+/* ---------- Title Bar Theme ---------- */
+
+QFrame#TitleBar[theme="alarm"],
+QLabel#Title[theme="alarm"] {
+    background-color: rgb(30, 120, 44);
+}
+
+/* ---------- Title Bar Buttons (Theme Override) ---------- */
+
+QPushButton#ExitButton[theme="alarm"],
+QPushButton#MinimizeButton[theme="alarm"] {
+    border: 2px solid rgba(61, 180, 50, 1);
+    color: black;
+}
+
+QLabel#Title[theme="alarm"] {
+    color: black;
+}
+
+/* ---------- Switch Bar ---------- */
+
+QFrame#SwitchBar[theme="alarm"] {
+    background-color: rgba(40, 150, 49, 1);
+}
+
+/* ---------- Components ---------- */
+
+QWidget#AlarmBlock {
+    border: 2px solid black;
+    border-radius: 12px;
+    padding: 10px;
+    color: black;
+}
+
+QLabel#AlarmTitle {
+    font-size: 18px;
+    font-weight: bold;
+    border: 2px solid black;
+    border-radius: 5px;
+    color: black;
+}
+
+QPushButton#DeleteBlockButton {
+    border: 2px solid black;
+    border-radius: 15px;
+    color: black;
+}
+
+QTimeEdit#AlarmTime {
+    font-size: 20px;
+    min-width: 100px;
+}
+
+QPushButton#AlarmToggle {
+    border: 2px solid black;
+    border-radius: 15px;
+    color: black;
+}
