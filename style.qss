@@ -205,6 +205,7 @@ QFrame#SwitchBar[theme="countdown"] {
 
 QTimeEdit#TimeRange {
     background-color: rgba(111, 198, 214, 1);
+    border: 2px solid solid rgba(50, 154, 180, 1);
     color: black;
     font-size: 36px;
     font-weight: bold;
@@ -270,7 +271,7 @@ QPushButton#MinimizeButton[theme="alarm"] {
 }
 
 QLabel#Title[theme="alarm"] {
-    color: black;
+    color: white;
 }
 
 /* ---------- Switch Bar ---------- */
@@ -282,8 +283,8 @@ QFrame#SwitchBar[theme="alarm"] {
 /* ---------- Components ---------- */
 
 QWidget#AlarmBlock {
+    background-color: rgba(21, 154, 94, 1);
     border: 2px solid black;
-    border-radius: 12px;
     padding: 10px;
     color: black;
 }
@@ -291,8 +292,6 @@ QWidget#AlarmBlock {
 QLabel#AlarmTitle {
     font-size: 18px;
     font-weight: bold;
-    border: 2px solid black;
-    border-radius: 5px;
     color: black;
 }
 
@@ -303,12 +302,12 @@ QPushButton#DeleteBlockButton {
 }
 
 QTimeEdit#AlarmTime {
-    font-size: 20px;
+    font-size: 15px;
     min-width: 100px;
 }
 
 QPushButton#AlarmToggle {
     border: 2px solid black;
-    border-radius: 15px;
+    border-radius: 5px;
     color: black;
 }

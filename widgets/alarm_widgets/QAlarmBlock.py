@@ -6,6 +6,7 @@ from .QAlarmTracker import QAlarmTracker
 class QAlarmBlock(QWidget):
     def __init__(self, title: str = "Alarm"):
         super().__init__()
+        self.setAttribute(Qt.WA_StyledBackground, True)
         self.init_vars()
         self.init_ui(title)
     
@@ -20,15 +21,15 @@ class QAlarmBlock(QWidget):
 
         # Delete Button
         self.delete_button = QPushButton("x")
-        self.delete_button.setFixedSize(30, 30)
+        self.delete_button.setFixedSize(20, 20)
         self.delete_button.setObjectName("DeleteBlockButton")
+        self.delete_button.hide()
 
         # Alarm Edit
         self.alarm_edit = QTimeEdit()
         self.alarm_edit.setDisplayFormat("HH:mm")
-        self.alarm_edit.setTime(QTime(17, 28))
+        self.alarm_edit.setTime(QTime(7, 0))
         self.alarm_edit.setButtonSymbols(QAbstractSpinBox.NoButtons)
-        self.alarm_edit.setAlignment(Qt.AlignCenter)
         self.alarm_edit.setObjectName("AlarmTime")
         self.alarm_tracker.alarm_edit = self.alarm_edit
         self.alarm_tracker.tracking_time = self.alarm_edit.time()
@@ -36,29 +37,24 @@ class QAlarmBlock(QWidget):
         # Toggle Button
         self.toggle_button = QPushButton("OFF")
         self.toggle_button.setCheckable(True)
-        self.toggle_button.setFixedSize(60, 30)
+        self.toggle_button.setFixedSize(30, 30)
         self.toggle_button.setObjectName("AlarmToggle")
 
-        # Horizontal Row (title + delete button)
-        title_layout = QHBoxLayout()
-        title_layout.setAlignment(Qt.AlignCenter)
-        title_layout.setSpacing(10)
-        title_layout.addWidget(self.title_label)
-        title_layout.addWidget(self.delete_button)
+        # Center stack (title above time)
+        center_layout = QVBoxLayout()
+        center_layout.setAlignment(Qt.AlignCenter)
+        center_layout.setSpacing(2)
+        center_layout.addWidget(self.title_label)
+        center_layout.addWidget(self.alarm_edit)
+        
+        # Main horizontal layout
+        main_layout = QHBoxLayout(self)
+        main_layout.setContentsMargins(10, 10, 10, 10)
+        main_layout.setSpacing(12)
 
-        # Horizontal Row (time + toggle)
-        config_layout = QHBoxLayout()
-        config_layout.setAlignment(Qt.AlignCenter)
-        config_layout.setSpacing(10)
-        config_layout.addWidget(self.alarm_edit)
-        config_layout.addWidget(self.toggle_button)
-
-        # Main Layout
-        main_layout = QVBoxLayout(self)
-        main_layout.setAlignment(Qt.AlignCenter)
-        main_layout.setSpacing(8)
-        main_layout.addLayout(title_layout)
-        main_layout.addLayout(config_layout)
+        main_layout.addWidget(self.delete_button, alignment=Qt.AlignLeft | Qt.AlignVCenter)
+        main_layout.addLayout(center_layout)
+        main_layout.addWidget(self.toggle_button, alignment=Qt.AlignRight | Qt.AlignVCenter)
 
         # Connect signals
         self.toggle_button.clicked.connect(self.toggle_alarm)
