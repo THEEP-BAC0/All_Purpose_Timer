@@ -24,35 +24,35 @@ class QSwitchBar(QFrame):
         self.window = window
 
     def init_ui(self) -> None:
-        # Create layouts
-        mainLayout = QHBoxLayout(self)
-        mainLayout.setContentsMargins(5, 5, 5, 5)
-        mainLayout.setSpacing(10)
-        
-        self.buttonsLayout = QHBoxLayout()
-        self.buttonsLayout.setContentsMargins(0, 0, 0, 0)
-        mainLayout.addLayout(self.buttonsLayout)
-
         # Create buttons
-        self.stopwatchSwitchButton = QPushButton(text="Stopwatch", objectName="StopwatchSwitchButton")
-        self.countdownSwitchButton = QPushButton(text="Countdown", objectName="CountdownSwitchButton")
-        self.alarmSwitchButton = QPushButton(text="Alarm", objectName="AlarmSwitchButton")
+        self.stopwatch_switch_button = QPushButton(text="Stopwatch", objectName="StopwatchSwitchButton")
+        self.countdown_switch_button = QPushButton(text="Countdown", objectName="CountdownSwitchButton")
+        self.alarm_switch_button = QPushButton(text="Alarm", objectName="AlarmSwitchButton")
 
         # Modify button
-        self.stopwatchSwitchButton.setDisabled(True)
-        for button in [self.stopwatchSwitchButton, self.countdownSwitchButton, self.alarmSwitchButton]:
+        self.stopwatch_switch_button.setDisabled(True)
+        for button in [self.stopwatch_switch_button, self.countdown_switch_button, self.alarm_switch_button]:
             button.setFixedHeight(20)
+        
+        # Create layouts
+        main_layout = QHBoxLayout(self)
+        main_layout.setContentsMargins(5, 5, 5, 5)
+        main_layout.setSpacing(10)
+
+        self.buttons_layout = QHBoxLayout()
+        self.buttons_layout.setContentsMargins(0, 0, 0, 0)
+        main_layout.addLayout(self.buttons_layout)
 
         # Add buttons to layout
-        self.buttonsLayout.addWidget(self.stopwatchSwitchButton)
-        self.buttonsLayout.addWidget(self.countdownSwitchButton)
-        self.buttonsLayout.addWidget(self.alarmSwitchButton)
+        self.buttons_layout.addWidget(self.stopwatch_switch_button)
+        self.buttons_layout.addWidget(self.countdown_switch_button)
+        self.buttons_layout.addWidget(self.alarm_switch_button)
 
         # Connect signals
         self.screen_map = {
-            self.stopwatchSwitchButton: QStopwatchScreen,
-            self.countdownSwitchButton: QCountdownScreen,
-            self.alarmSwitchButton: QAlarmScreen,
+            self.stopwatch_switch_button: QStopwatchScreen,
+            self.countdown_switch_button: QCountdownScreen,
+            self.alarm_switch_button: QAlarmScreen,
         }
         for button in self.screen_map:
             button.clicked.connect(lambda _, b=button: self.switch_screen(b))
@@ -62,8 +62,8 @@ class QSwitchBar(QFrame):
     def switch_screen(self, button: QPushButton) -> None:
         self.window.screen_manager.switch_to(self.screen_map[button])
 
-        for i in range(self.buttonsLayout.count()):
-            widget = self.buttonsLayout.itemAt(i).widget()
+        for i in range(self.buttons_layout.count()):
+            widget = self.buttons_layout.itemAt(i).widget()
             if not widget:
                 continue
             

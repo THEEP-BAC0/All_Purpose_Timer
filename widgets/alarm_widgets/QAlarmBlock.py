@@ -1,4 +1,4 @@
-from PySide6.QtWidgets import QWidget, QLabel, QTimeEdit, QHBoxLayout, QVBoxLayout, QPushButton, QAbstractSpinBox
+from PySide6.QtWidgets import QWidget, QLineEdit, QTimeEdit, QHBoxLayout, QVBoxLayout, QPushButton, QAbstractSpinBox
 from PySide6.QtCore import Qt, QTime
 
 from .QAlarmTracker import QAlarmTracker
@@ -15,12 +15,12 @@ class QAlarmBlock(QWidget):
 
     def init_ui(self, title: str) -> None:
         # Title
-        self.title_label = QLabel(title)
-        self.title_label.setAlignment(Qt.AlignCenter)
+        self.title_label = QLineEdit(text=title, alignment=Qt.AlignmentFlag.AlignLeft)
         self.title_label.setObjectName("AlarmTitle")
+        self.title_label.setReadOnly(True)
 
         # Delete Button
-        self.delete_button = QPushButton("x")
+        self.delete_button = QPushButton(text="x")
         self.delete_button.setFixedSize(20, 20)
         self.delete_button.setObjectName("DeleteBlockButton")
         self.delete_button.hide()
@@ -35,14 +35,13 @@ class QAlarmBlock(QWidget):
         self.alarm_tracker.tracking_time = self.alarm_edit.time()
 
         # Toggle Button
-        self.toggle_button = QPushButton("OFF")
+        self.toggle_button = QPushButton(text="OFF")
         self.toggle_button.setCheckable(True)
         self.toggle_button.setFixedSize(30, 30)
         self.toggle_button.setObjectName("AlarmToggle")
 
         # Center stack (title above time)
-        center_layout = QVBoxLayout()
-        center_layout.setAlignment(Qt.AlignCenter)
+        center_layout = QVBoxLayout(alignment=Qt.AlignCenter)
         center_layout.setSpacing(2)
         center_layout.addWidget(self.title_label)
         center_layout.addWidget(self.alarm_edit)

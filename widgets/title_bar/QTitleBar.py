@@ -25,24 +25,10 @@ class QTitleBar(QFrame):
         self.dragger = WindowDragger(self.window, self)
 
     def init_ui(self):
-        # Create layouts
-        layout = QHBoxLayout(self)
-        layout.setContentsMargins(5, 5, 5, 5)
-        layout.setSpacing(10)
-        
-        buttons_layout = QHBoxLayout()
-        buttons_layout.setContentsMargins(0, 0, 0, 0)
-        title_layout = QHBoxLayout()
-        title_layout.setContentsMargins(0, 0, 0, 0)
-
-        layout.addLayout(buttons_layout)
-        layout.addLayout(title_layout)
-
         # Title label
-        self.titleLabel = QLabel("All Purpose Timer", objectName="Title")
-        if self.title: self.titleLabel.setText(self.title)
-        self.titleLabel.setProperty("theme", "main")
-        title_layout.addWidget(self.titleLabel)
+        self.title_label = QLabel("All Purpose Timer", objectName="Title")
+        if self.title: self.title_label.setText(self.title)
+        self.title_label.setProperty("theme", "main")
 
         # Create buttons
         self.btn_close = QCloseButton(self)
@@ -50,8 +36,22 @@ class QTitleBar(QFrame):
 
         # Modify button
         for b in (self.btn_close, self.btn_min): b.setFixedSize(14, 14)
+        
+        # Create layouts
+        main_layout = QHBoxLayout(self)
+        main_layout.setContentsMargins(5, 5, 5, 5)
+        main_layout.setSpacing(10)
 
-        # Add buttons to layout
+        buttons_layout = QHBoxLayout()
+        buttons_layout.setContentsMargins(0, 0, 0, 0)
+        title_layout = QHBoxLayout()
+        title_layout.setContentsMargins(0, 0, 0, 0)
+
+        main_layout.addLayout(buttons_layout)
+        main_layout.addLayout(title_layout)
+
+        # Add widgets to layout
+        title_layout.addWidget(self.title_label)
         buttons_layout.addWidget(self.btn_close)
         buttons_layout.addWidget(self.btn_min)
 

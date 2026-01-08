@@ -289,22 +289,21 @@ QWidget#AlarmBlock {
     color: black;
 }
 
-QLabel#AlarmTitle {
-    font-size: 18px;
-    font-weight: bold;
-    color: black;
-}
-
 QPushButton#DeleteBlockButton {
     border: 2px solid black;
     border-radius: 15px;
     color: black;
 }
 
-QTimeEdit#AlarmTime {
+QTimeEdit#AlarmTime,
+QLineEdit#AlarmTitle {
     font-size: 15px;
     min-width: 100px;
+    background: transparent;
+    color: black;
+    border: none;
 }
+
 
 QPushButton#AlarmToggle {
     border: 2px solid black;

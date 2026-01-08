@@ -17,34 +17,34 @@ class QCountdownScreen(QWidget):
 
     # Initializes the user interface
     def init_ui(self) -> None:
+        # Create widget components
+        self.countdown_range: QTimeRange = QTimeRange()
+        self.countdown_button: QPushButton = QPushButton(text="Start", objectName="CountdownButton")
+        
         # Create layout
         self.layout = QVBoxLayout(self)
         self.layout.setAlignment(Qt.AlignCenter)
         self.layout.setSpacing(5)
         self.layout.setContentsMargins(0, 0, 0, 0)
 
-        # Create widget components
-        self.countdownRange: QTimeRange = QTimeRange()
-        self.countdownButton: QPushButton = QPushButton(text="Start", objectName="CountdownButton")
-        
         # Add widgets to layout
-        self.layout.addWidget(self.countdownRange)
-        self.layout.addWidget(self.countdownButton)
-
+        self.layout.addWidget(self.countdown_range)
+        self.layout.addWidget(self.countdown_button)
+        
         # Connect signals
-        self.countdownButton.clicked.connect(self.toggle_countdown)
+        self.countdown_button.clicked.connect(self.toggle_countdown)
         self.countdown.time_changed.connect(self.update_label)
 
         self.set_theme()
 
     # Toggles the countdown
     def toggle_countdown(self) -> None:
-        self.countdown.toggle(self.countdownRange.time())
-        self.countdownButton.setText("Pause" if self.countdown.running else "Start")
+        self.countdown.toggle(self.countdown_range.time())
+        self.countdown_button.setText("Pause" if self.countdown.running else "Start")
 
     # Updates countdown label
     def update_label(self, time: QTime) -> None:
-        self.countdownRange.setTime(time)
+        self.countdown_range.setTime(time)
     
     def set_theme(self):
         theme = "countdown"

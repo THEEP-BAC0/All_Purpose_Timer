@@ -15,26 +15,26 @@ class QStopwatchScreen(QWidget):
 
     # Initializes the user interface
     def init_ui(self) -> None:
-        # Create layout
-        self.layout = QVBoxLayout(self)
-        self.layout.setAlignment(Qt.AlignCenter)
-        self.layout.setSpacing(5)
-        self.layout.setContentsMargins(0, 0, 0, 0)
-
         # Create widget components
-        self.stopwatchLabel: QLabel = QLabel(text="00:00:00", objectName="StopwatchLabel")
-        self.stopwatchButton: QPushButton = QPushButton(text="Start", objectName="StopwatchButton")
-        self.restartButton: QPushButton = QPushButton(text="Restart", objectName="RestartButton")
+        self.stopwatch_label: QLabel = QLabel(text="00:00:00", objectName="StopwatchLabel")
+        self.stopwatch_button: QPushButton = QPushButton(text="Start", objectName="StopwatchButton")
+        self.restart_button: QPushButton = QPushButton(text="Restart", objectName="RestartButton")
+
+        # Create layout
+        self.main_layout = QVBoxLayout(self)
+        self.main_layout.setAlignment(Qt.AlignCenter)
+        self.main_layout.setSpacing(5)
+        self.main_layout.setContentsMargins(0, 0, 0, 0)
         
         # Add widgets to layout
-        self.layout.addWidget(self.stopwatchLabel)
-        self.layout.addWidget(self.stopwatchButton)
-        self.layout.addWidget(self.restartButton)
+        self.main_layout.addWidget(self.stopwatch_label)
+        self.main_layout.addWidget(self.stopwatch_button)
+        self.main_layout.addWidget(self.restart_button)
 
         # Connect signals
-        self.stopwatchButton.clicked.connect(self.toggle_stopwatch)
+        self.stopwatch_button.clicked.connect(self.toggle_stopwatch)
         self.stopwatch.time_changed.connect(self.update_label)
-        self.restartButton.clicked.connect(lambda : self.stopwatch.reset_time())
+        self.restart_button.clicked.connect(lambda : self.stopwatch.reset_time())
 
         self.set_theme()
 

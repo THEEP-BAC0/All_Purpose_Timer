@@ -1,6 +1,7 @@
 # PySide6 Widgets
 from PySide6.QtWidgets import QMainWindow, QVBoxLayout, QWidget
 from PySide6.QtCore import Qt
+from utils.paths import resource_path
 
 # Created Widgets
 from widgets.title_bar.QTitleBar import QTitleBar
@@ -28,7 +29,8 @@ class QWindow(QMainWindow):
         self.setWindowFlags(Qt.FramelessWindowHint)
         self.setAttribute(Qt.WA_TranslucentBackground)
         
-        with open ("style.qss") as f: self.setStyleSheet(f.read())
+        qss_path = resource_path("style.qss")
+        with open(qss_path, "r", encoding="utf-8") as f: self.setStyleSheet(f.read())
 
     def init_managers(self) -> None:
         self.screen_manager = ScreenManager(self)

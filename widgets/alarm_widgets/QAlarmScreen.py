@@ -11,6 +11,13 @@ class QAlarmScreen(QWidget):
 
     # Initializes the user interface
     def init_ui(self) -> None:
+        # Create alarm edit
+        self.alarm_block_edit = QLineEdit()
+        self.alarm_block_edit.setPlaceholderText("Alarm title")
+
+        # Create edit button
+        self.edit_button = QPushButton("Edit")
+
         # Create main layout
         self.main_layout = QVBoxLayout(self)
         self.main_layout.setAlignment(Qt.AlignCenter)
@@ -37,13 +44,6 @@ class QAlarmScreen(QWidget):
         self.scroll_area.setWidgetResizable(True)
         self.scroll_area.setWidget(self.scroll_widget)
         self.scroll_area.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
-
-        # Create alarm edit
-        self.alarm_block_edit = QLineEdit()
-        self.alarm_block_edit.setPlaceholderText("Alarm title")
-
-        # Create edit button
-        self.edit_button = QPushButton("Edit")
         
         # Add widgets to layout
         self.main_layout.addLayout(self.config_layout)
@@ -75,6 +75,13 @@ class QAlarmScreen(QWidget):
                 alarm_block.delete_button.hide()
             else:
                 alarm_block.delete_button.show()
+        # Toggle title editability
+        for i in range(self.alarm_layout.count()):
+            alarm_block = self.alarm_layout.itemAt(i).widget()
+            if alarm_block.title_label.isReadOnly():
+                alarm_block.title_label.setReadOnly(False)
+            else:
+                alarm_block.title_label.setReadOnly(True)
 
     def set_theme(self):
         theme = "alarm"
